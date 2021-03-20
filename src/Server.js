@@ -298,6 +298,7 @@ class Server {
             this.movingNodes.splice(i, 1);
         // Special on-remove actions
         node.onRemove(this);
+
     }
     updateClients() {
         // check dead clients
@@ -676,7 +677,15 @@ class Server {
         cell.onEaten(check);
         cell.killer = check;
         // Remove cell
-        this.removeNode(cell);
+        if(cell.type !== 0){
+            this.removeNode(cell);
+        }
+        else{
+            // console.log("respawning")
+            cell.setSize(this.config.playerStartSize)
+            // cell.position.assign(this.randomPos())
+            cell.position.add(200)
+        }
     }
     splitPlayerCell(client, parent, angle, mass) {
         var size = Math.sqrt(mass * 100);
