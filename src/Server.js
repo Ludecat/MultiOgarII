@@ -708,37 +708,31 @@ class Server {
     } else if (check._size < cell._size * 1.15 || !check.canEat(cell)) return; // Cannot eat or cell refuses to be eaten
     // Consume effect
 
-    if (cell.hasOwnProperty('owner') &&
-        cell.owner &&
-        cell.owner.hasOwnProperty('pID') && 
-        check.hasOwnProperty('owner') &&
-        check.owner &&
-        check.owner.hasOwnProperty('pID') && 
-        cell.owner.pID === check.owner.pID) {
-    }
-    else{
-      check.onEat(cell);
-      cell.onEaten(check);
-      cell.killer = check;
-      // Remove cell
-      if (cell.type !== 0) {
-        this.removeNode(cell);
-      } else {
-        // console.log(cell.owner.pID)
-        // console.log(check.owner.pID)
+    check.onEat(cell);
+    cell.onEaten(check);
+    cell.killer = check;
 
-        // console.log(check.owner)
-
-        // if(cell.owner.pID !== check.owner.pID){ //stop being able to eat own split cell
-        // console.log("respawning")
-        cell.setSize(this.config.playerStartSize);
-        // cell.position.assign(this.randomPos())
-        cell.position.add(200);
-
-        // }
-      }
+    if (this.isSameOwner(cell, check) || cell.type !== 0) {
+      this.removeNode(cell);
+    } else {
+      cell.setSize(this.config.playerStartSize);
+      // cell.position.assign(this.randomPos())
+      cell.position.add(200);
     }
   }
+
+  isSameOwner(cell1, cell2) {
+    return (
+      cell1.hasOwnProperty("owner") &&
+      cell1.owner &&
+      cell1.owner.hasOwnProperty("pID") &&
+      cell2.hasOwnProperty("owner") &&
+      cell2.owner &&
+      cell2.owner.hasOwnProperty("pID") &&
+      cell1.owner.pID === cell2.owner.pID
+    );
+  }
+
   splitPlayerCell(client, parent, angle, mass) {
     var size = Math.sqrt(mass * 100);
     var size1 = Math.sqrt(parent.radius - size * size);
