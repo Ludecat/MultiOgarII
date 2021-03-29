@@ -117,6 +117,11 @@ class PacketHandler {
     message_onKeyQ(message) {
         if (message.length !== 1)
             return;
+            
+        if(this.socket.playerTracker.spectate === true){
+            this.pressQ = true;
+            return;
+        }
         var tick = this.server.tickCoutner;
         var dt = tick - this.lastQTick;
         if (dt < this.server.config.ejectCooldown) {
@@ -281,7 +286,6 @@ class PacketHandler {
                 socket.send(buffer, { binary: true });
         }
         else {
-            socket.readyState = this.server.WebSocket.CLOSED;
             socket.emit('close');
         }
     }
