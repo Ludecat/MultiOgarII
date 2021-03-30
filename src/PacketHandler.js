@@ -285,6 +285,20 @@ class PacketHandler {
             socket.emit('close');
         }
     }
+    
+    sendPacketJSON(packet) {
+        const jsonObject = packet.build()
+        var socket = this.socket;
+        if (!packet || !socket.isConnected || socket.playerTracker.isMi ||
+            socket.playerTracker.isBot) return;
+            if (socket.readyState == this.server.WebSocket.OPEN) {
+            this.socket.send(JSON.stringify(jsonObject))
+        }
+        else {
+            socket.readyState = this.server.WebSocket.CLOSED;
+            socket.emit('close');
+        }
+    }
 }
 
 module.exports = PacketHandler;

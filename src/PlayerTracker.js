@@ -287,6 +287,8 @@ class PlayerTracker {
             if (this.server.leaderboardType >= 0)
                 packetHandler.sendPacket(new Packet.UpdateLeaderboard(this, this.server.leaderboard, this.server.leaderboardType));
         }
+
+        packetHandler.sendPacketJSON(new Packet.UpdatePlayerNodes(this.server.nodesPlayer))
     }
     updateSpecView(len) {
         if (!this.spectate || len) {
