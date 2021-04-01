@@ -6,16 +6,18 @@ class UpdatePlayerNodes {
     }
 
     build() {
-
+        
         const data = this.playerNodes.map(playerNode => {
             return {
-                lastNodeId: playerNode.lastNodeId,
+                nodeId: playerNode.nodeId,
+                ownerId: playerNode.owner.pID,
                 ownerName: playerNode.owner._name,
                 skin: playerNode.owner._skin,
                 color: playerNode.color,
                 positionX: playerNode.position.x,
                 positionY: playerNode.position.y,
-                team: playerNode.owner.team
+                team: playerNode.owner.team,
+                size: playerNode._size
             }
         })
 
