@@ -9,6 +9,7 @@ module.exports = {
     ServerStat: require('./ServerStat'),
     SetBorder: require('./SetBorder'),
     UpdateNodes: require('./UpdateNodes'),
+    UpdatePlayerNodes: require('./UpdatePlayerNodes'),
     UpdateLeaderboard: require('./UpdateLeaderboard'),
     LeaderboardPosition: require('./LeaderboardPosition'),
     UpdateTimer: require('./UpdateTimer'),
