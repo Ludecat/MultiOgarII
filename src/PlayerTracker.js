@@ -195,8 +195,8 @@ class PlayerTracker {
         // update viewbox
         this.updateSpecView(this.cells.length);
         var scale = Math.max(this.getScale(), this.server.config.serverMinScale);
-        var halfWidth = (this.server.config.serverViewBaseX + 100) / scale / 2;
-        var halfHeight = (this.server.config.serverViewBaseY + 100) / scale / 2;
+        var halfWidth = (this.server.config.serverViewBaseX + 100000) / scale / 2;
+        var halfHeight = (this.server.config.serverViewBaseY + 100000) / scale / 2;
         if(this.spectate === true){
             halfWidth += 1000;
             halfHeight += 1000;

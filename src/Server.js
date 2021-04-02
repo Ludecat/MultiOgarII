@@ -715,8 +715,9 @@ class Server {
     if (this.isSameOwner(cell, check) || cell.type !== 0) {
       this.removeNode(cell);
     } else {
+      //respawn
       cell.setSize(this.config.playerStartSize);
-      // cell.position.assign(this.randomPos())
+      cell.position.assign(this.randomPos())
       cell.position.add(200);
     }
   }
