@@ -691,14 +691,14 @@ class Server {
   resolveCollision(m) {
     var cell = m.cell;
     var check = m.check;
-    if(cell.isInvulnerable() || check.isInvulnerable()) {
-      // console.log("invulnerable")
-      return
-    }
     if (cell._size > check._size) {
       cell = m.check;
       check = m.cell;
     }
+      if(cell.isInvulnerable()) {
+        // console.log("invulnerable")
+        return
+      }
     // Do not resolve removed
     if (cell.isRemoved || check.isRemoved) return;
     // check eating distance
