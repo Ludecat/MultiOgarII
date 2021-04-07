@@ -712,7 +712,9 @@ class Server {
     cell.onEaten(check);
     cell.killer = check;
 
-    if (this.isSameOwner(cell, check) || cell.type !== 0) {
+    if(cell.owner && cell.owner.hasOwnProperty("cells"))
+    console.log(cell.owner.cells.length)
+    if (this.isSameOwner(cell, check) || cell.type !== 0 || (cell.owner && cell.owner.hasOwnProperty("cells") && cell.owner.cells.length > 1)) {
       this.removeNode(cell);
     } else {
       //respawn
