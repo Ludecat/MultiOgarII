@@ -1,7 +1,4 @@
 
-//TODO Change for server
-// const HOST = "http://localhost:10090/"
-const HOST = "agar-server.ludecat.io/"
 let uuid = localStorage.getItem("uuid") || ""
 const controlsSection = document.querySelector('.js-controls-section');
 const uuidForm = document.querySelector('.js-uuid-form');
@@ -185,7 +182,7 @@ exitBtn.addEventListener("click", () => {
 // --- Fetch functions ---
 
 function executeCommand(command) {
-  return fetch(HOST + "commands?command=" + command, {
+  return fetch("commands?command=" + command, {
     method: 'POST',
     headers: {
       'authorization': uuid,
@@ -236,7 +233,7 @@ function executeCommandWithResp(command) {
 
 
 function executeRequest(request) {
-  return fetch(HOST + "requests?request=" + request, {
+  return fetch("requests?request=" + request, {
     method: 'GET',
     headers: {
       //'authorization': uuid,
