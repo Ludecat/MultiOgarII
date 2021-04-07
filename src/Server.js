@@ -691,6 +691,10 @@ class Server {
   resolveCollision(m) {
     var cell = m.cell;
     var check = m.check;
+    if(cell.isInvulnerable() || check.isInvulnerable()) {
+      // console.log("invulnerable")
+      return
+    }
     if (cell._size > check._size) {
       cell = m.check;
       check = m.cell;
@@ -712,8 +716,6 @@ class Server {
     cell.onEaten(check);
     cell.killer = check;
 
-    if(cell.owner && cell.owner.hasOwnProperty("cells"))
-    console.log(cell.owner.cells.length)
     if (this.isSameOwner(cell, check) || cell.type !== 0 || (cell.owner && cell.owner.hasOwnProperty("cells") && cell.owner.cells.length > 1)) {
       this.removeNode(cell);
     } else {
@@ -721,6 +723,12 @@ class Server {
       cell.setSize(this.config.playerStartSize);
       cell.position.assign(this.randomPos())
       cell.position.add(200);
+      cell.setInvulnerability(true)
+
+      setTimeout(() => {
+        cell.setInvulnerability(false)
+      }, 5000)
+
     }
   }
 
