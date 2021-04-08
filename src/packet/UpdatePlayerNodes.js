@@ -1,5 +1,3 @@
-var BinaryWriter = require("./BinaryWriter");
-
 class UpdatePlayerNodes {
     constructor(playerNodes) {
         this.playerNodes = playerNodes;

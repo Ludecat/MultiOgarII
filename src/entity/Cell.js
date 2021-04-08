@@ -15,6 +15,7 @@ class Cell {
         this.isMoving = false; // Indicate that cell is in boosted mode
         this.boostDistance = 0;
         this.boostDirection = new Vec2(0, 0);
+        this._invulnerable = false
 
         if (this.server) {
             this.createdAt = this.server.ticks;
@@ -32,6 +33,14 @@ class Cell {
         this.radius = size * size;
         this._mass = this.radius / 100;
     };
+
+    isInvulnerable(){
+        return this._invulnerable
+    }
+
+    setInvulnerability(invulnerability){
+        this._invulnerable = invulnerability
+    }
 
     // By default cell cannot eat anyone
     canEat(cell) {

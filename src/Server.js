@@ -695,6 +695,10 @@ class Server {
       cell = m.check;
       check = m.cell;
     }
+      if(cell.isInvulnerable()) {
+        // console.log("invulnerable")
+        return
+      }
     // Do not resolve removed
     if (cell.isRemoved || check.isRemoved) return;
     // check eating distance
@@ -712,13 +716,19 @@ class Server {
     cell.onEaten(check);
     cell.killer = check;
 
-    if (this.isSameOwner(cell, check) || cell.type !== 0) {
+    if (this.isSameOwner(cell, check) || cell.type !== 0 || (cell.owner && cell.owner.hasOwnProperty("cells") && cell.owner.cells.length > 1)) {
       this.removeNode(cell);
     } else {
       //respawn
       cell.setSize(this.config.playerStartSize);
       cell.position.assign(this.randomPos())
       cell.position.add(200);
+      cell.setInvulnerability(true)
+
+      setTimeout(() => {
+        cell.setInvulnerability(false)
+      }, 5000)
+
     }
   }
 

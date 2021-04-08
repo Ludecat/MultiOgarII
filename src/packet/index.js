@@ -10,6 +10,7 @@ module.exports = {
     SetBorder: require('./SetBorder'),
     UpdateNodes: require('./UpdateNodes'),
     UpdatePlayerNodes: require('./UpdatePlayerNodes'),
+    StartCountdown: require('./StartCountdown'),
     UpdateLeaderboard: require('./UpdateLeaderboard'),
     LeaderboardPosition: require('./LeaderboardPosition'),
     UpdateTimer: require('./UpdateTimer'),
