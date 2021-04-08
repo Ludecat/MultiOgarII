@@ -153,17 +153,17 @@ class Tournament extends Mode {
       });
     }
 
-    // fetch(fetch_secrets.sheetUrl, {
-    //     method: 'POST',
-    //     headers: {
-    //         Authorization: fetch_secrets.bearer,
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //         game: 'Agario',
-    //         result: results
-    //     })
-    // })
+    fetch(fetch_secrets.sheetUrl, {
+        method: 'POST',
+        headers: {
+            Authorization: fetch_secrets.bearer,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            game: 'Agario',
+            result: results
+        })
+    })
   }
 }
 
