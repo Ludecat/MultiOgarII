@@ -696,7 +696,6 @@ class Server {
       check = m.cell;
     }
       if(cell.isInvulnerable()) {
-        // console.log("invulnerable")
         return
       }
     // Do not resolve removed
@@ -723,10 +722,10 @@ class Server {
       cell.setSize(this.config.playerStartSize);
       cell.position.assign(this.randomPos())
       cell.position.add(200);
-      cell.setInvulnerability(true)
+      cell._invulnerable = true
 
       setTimeout(() => {
-        cell.setInvulnerability(false)
+      cell._invulnerable = false
       }, 5000)
 
     }
