@@ -109,12 +109,17 @@ class UpdateNodes {
             writer.writeUInt8(color.g >>> 0); // Color G
             writer.writeUInt8(color.b >>> 0); // Color B
             var flags = 0;
+
             if (node.isVirus)
                 flags |= 0x01; // isVirus
+            if (node.isInvulnerable()){
+                flags |= 0x08; // isInvulnerable
+            }
             if (node.isAgitated)
                 flags |= 0x10; // isAgitated
             if (node.type == 3)
                 flags |= 0x20; // isEjected
+
             writer.writeUInt8(flags >>> 0); // Flags
             writer.writeUInt16(0); // Cell Name
         }
