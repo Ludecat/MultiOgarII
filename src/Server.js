@@ -696,7 +696,6 @@ class Server {
       check = m.cell;
     }
       if(cell.isInvulnerable()) {
-        // console.log("invulnerable")
         return
       }
     // Do not resolve removed
